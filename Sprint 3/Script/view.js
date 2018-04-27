@@ -1,24 +1,49 @@
-// JavaScript source code
+//View - responsible for any code which result in the DOM
+//being changed.
 
+//The purpose of this function is to update the view/presentation
+// of the HTML DOM elements which it targets.
+//AS a result of this, it belongs in the view.
+//Function Declaration.
 function updateDiv() {
-
-  if(booleanCheck != 1) {
-
-    booleanCheck++;
-
+  //Assigning target element to variable.
   var container = document.getElementById('usednum');
+  //Assigning target element to variable.
   var containerFinMessage = document.getElementById("finmessage");
-
-  //Append
+  //string for target container is kept in here as opposed to adding hardcded string
+  //into the create text node function.
+  var messageStr = "All Numbers Called";
+  //Here I check the value of the boolean conditionial
+  //which I have set in the model.
+  if(booleanCheck != 1) {
+    //Only when this function is ran do we increment the conditionial
+    //check value as to ensure it does not the application
+    //runs this function more than once.
+    booleanCheck++;
+    //This line appends a child text node to the target element
+    //which was assigned to a variable above.
+    //Inside that target node, a new text node is created, and the
+    //contents of the called number array has the join method applied.
+    //With string data to seperate the value of each
+    //index value in the array.
   container.appendChild(document.createTextNode(bingoNum.join(", ")));
-  //Show steve weird behaviour.
-  containerFinMessage.appendChild(document.createTextNode("All Numbers Called"));
+  //This acts int he same manner as above however, I am simply
+  //passing a variable which contains the message string into it.
+  containerFinMessage.appendChild(document.createTextNode(messageStr));
   }
 }
 
+//The purpose of this function is to iterate over all of the target HTML
+//elements.
+
+//Function Declaration.
 function populateCard() {
+  //loop initialisation.
   for (var x=0; x<24; x++) {
+    //Assinging the last value from target array to the variable.
     let b = cardNum.pop();
+    //creating string for target element ID, and then setting
+    //the target elements value to the above variable. 
   document.getElementById("square"+x).innerHTML = b;
     }
   }
